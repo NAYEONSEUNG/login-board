@@ -1,0 +1,176 @@
+--기획사 테이블 생성
+CREATE TABLE tbl_enter(
+    ano VARCHAR2(20) PRIMARY KEY, --소속 아티스트 고유번호
+    aname VARCHAR2(50) NOT NULL,  --아티스트 이름
+    major VARCHAR2(50) NOT NULL,  --분야(연기, 가수...)
+    groupyn VARCHAR2(5) NOT NULL, --그룹 유무(Y/N)
+    groupnm VARCHAR2(100), --그룹이 없을수도 있으니 NOT NULL ㄴㄴ
+    sal NUMBER NOT NULL,   --연봉
+    regdate DATE DEFAULT SYSDATE
+);
+
+--시퀀스   //내가 설정한 값을 자동으로 + 1 해준다.
+CREATE SEQUENCE seq_enter  -- 한번 저장되면 계속 증가해버린다. 에러가 떠도 값은 계속 증가
+    START WITH 1    --시작값을 쓸수 있다.
+    INCREMENT BY 1 --증가값
+    NOCYCLE;        --순환X 계속 무한대로 증가
+--MAXVALUE20    --최대값
+--MINVALUE 1    --최소값
+--CYCLE/NOCYCLE --반복여부
+
+INSERT INTO tbl_enter(ano, aname, major, groupyn, groupnm, sal)
+VALUES(seq_enter.NEXTVAL, '미나','가수','Y','트와이스',500);
+INSERT INTO tbl_enter(ano, aname, major, groupyn, groupnm, sal)--SYSDATE 디포르트라 자동으로 들어가니 안쓴다.
+VALUES(seq_enter.NEXTVAL, '사나','가수','Y','트와이스',1000);
+INSERT INTO tbl_enter(ano, aname, major, groupyn, groupnm, sal)--SYSDATE 디포르트라 자동으로 들어가니 안쓴다.
+VALUES(seq_enter.NEXTVAL, '메시','가수','Y','바르샤',3500);
+INSERT INTO tbl_enter(ano, aname, major, groupyn, groupnm, sal)--SYSDATE 디포르트라 자동으로 들어가니 안쓴다.
+VALUES(seq_enter.NEXTVAL, '태양','가수','Y','빅뱅',5500);
+INSERT INTO tbl_enter(ano, aname, major, groupyn, groupnm, sal)--SYSDATE 디포르트라 자동으로 들어가니 안쓴다.
+VALUES(seq_enter.NEXTVAL, '혜리','가수','Y','걸스데이',7500);
+COMMIT;
+
+DELETE FROM tbl_enter
+WHERE ano = 1;
+
+SELECT* FROM tbl_enter;
+roll back;
+================================================================================================================
+-- 게시판 테이블 작성
+
+DROP TABLE tbl_board;
+
+CREATE TABLE tbl_board (
+
+    bno NUMBER PRIMARY KEY,
+
+    title VARCHAR2(200) NOT NULL,
+
+    content VARCHAR2(500) NOT NULL,
+
+    writer VARCHAR2(100) NOT NULL,
+
+    viewcnt NUMBER DEFAULT 0,
+
+    regdate DATE DEFAULT SYSDATE
+
+);
+
+DROP SEQUENCE seq_board;
+
+CREATE SEQUENCE seq_board
+
+    START WITH 1
+
+    INCREMENT BY 1
+
+    NOCYCLE;
+
+INSERT INTO tbl_board (bno, title, content, writer)
+
+VALUES(seq_board.NEXTVAL,'시험통과할수있나요?','통과할거같다 손~~','??봇');
+
+INSERT INTO tbl_board (bno, title, content, writer)
+
+VALUES(seq_board.NEXTVAL,'건조할땐 역시 비지','강의실이 너무 건조해서 비 오니까 좋다','rainbow');
+
+INSERT INTO tbl_board (bno, title, content, writer)
+
+VALUES(seq_board.NEXTVAL,'자바 실무 꿀팁 대 방출','바로 구글링이지','날따라와');
+
+INSERT INTO tbl_board (bno, title, content, writer)
+
+VALUES(seq_board.NEXTVAL,'여기다가 질문하는 건가요?','궁금','TMI_!');
+
+INSERT INTO tbl_board (bno, title, content, writer)
+
+VALUES(seq_board.NEXTVAL,'오늘 비가 와서 습함ㅠ','습한 거 싫어서 히터 빵빵하게 틀려고 함','꿀꿀이');
+COMMIT;
+SELECT * FROM tbl_board;
+
+============================================================================================================
+-- 은행 테이블생성
+
+DROP TABLE tbl_bank;
+
+CREATE TABLE tbl_bank(
+
+    bno NUMBER PRIMARY KEY,      -- 계좌번호
+
+    bname VARCHAR2(50) NOT NULL, -- 예금주
+
+    pw VARCHAR2(50) NOT NULL,    -- 계좌비밀번호
+
+    money NUMBER DEFAULT 0,      -- 계좌금액
+
+    regdate DATE DEFAULT SYSDATE -- 계좌개설일
+
+);
+
+DROP SEQUENCE seq_bank;
+
+CREATE SEQUENCE seq_bank
+
+    START WITH 101
+
+    INCREMENT BY 1
+
+    NOCYCLE;
+
+INSERT INTO tbl_bank (bno, bname, pw)
+
+VALUES(seq_bank.NEXTVAL,'오라클','147');
+
+INSERT INTO tbl_bank (bno, bname, pw)
+
+VALUES(seq_bank.NEXTVAL,'자바라','258');
+
+INSERT INTO tbl_bank (bno, bname, pw)
+
+VALUES(seq_bank.NEXTVAL,'데이터','369');
+
+INSERT INTO tbl_bank (bno, bname, pw)
+
+VALUES(seq_bank.NEXTVAL,'박은종','789');
+
+INSERT INTO tbl_bank (bno, bname, pw)
+
+VALUES(seq_bank.NEXTVAL,'이지훈','369');
+
+COMMIT;
+
+SELECT * FROM tbl_bank;
+==================================================================================================================
+
+DROP TABLE tbl_member;
+
+CREATE TABLE tbl_member(
+
+    id VARCHAR2(50) PRIMARY KEY,
+
+    pw VARCHAR2(30) NOT NULL,
+
+    name VARCHAR2(100) NOT NULL,
+
+    phone VARCHAR2(100) NOT NULL,
+
+    regdate DATE DEFAULT SYSDATE
+
+);
+
+
+INSERT INTO tbl_member(id, pw, name, phone)
+
+VALUES ('a1234','1234','에이','01012341234');
+
+INSERT INTO tbl_member(id, pw, name, phone)
+
+VALUES ('b234','3455','비','01034559888');
+
+INSERT INTO tbl_member(id, pw, name, phone)
+
+VALUES ('c456','4567','씨','01045670000');
+
+COMMIT;
+
+SELECT * FROM tbl_member;
