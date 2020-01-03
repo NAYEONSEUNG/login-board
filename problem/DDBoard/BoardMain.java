@@ -26,7 +26,8 @@ public class BoardMain {
         	System.out.println("==6.게시글 정렬");
         	System.out.println("==7.상세게시글");
         	System.out.println("==8만든이");
-        	System.out.println("==9프로그램종료");
+        	System.out.println("==9로그아웃");
+        	System.out.println("==10프로그램종료");
         	
         	if(BoardMain.session.equals("YES")) {
         		System.out.println(BoardMain.userid+"\"님환영합니다");
@@ -37,7 +38,7 @@ public class BoardMain {
          while(true) {
         	 System.out.println("번호>>>");
         	 code = sc.nextInt();
-        	 if(code >= 0 && code <=7) {
+        	 if(code >= 0 && code <=9) {
         		 break;
         	 }else {
         		 System.out.println("0---7까지만 입력하세요");
@@ -78,7 +79,7 @@ public class BoardMain {
         		 continue;
         	 }
         	 System.out.println("======================");
-        	 System.out.println("수정할게시글>> 번호");
+        	 System.out.println("수정할게시글 번호>> ");
              int ano = sc.nextInt();      
              if(!(BoardMain.userid == bbdao.getWriter(ano))){
          		System.out.println("수정할수 없습니다.");
@@ -134,7 +135,20 @@ public class BoardMain {
         	 System.out.println("번호>>");
         	 int ano = sc.nextInt();
         	bbdao.BoardView(ano);
+         }else if(code == 8) {
+        	 
+         }else if(code == 9) {
+        	 if(BoardMain.session.equals("YES")) {//로그인
+        		 System.out.println("======================");
+        		 System.out.println(BoardMain.userid+"님 로그아웃 되었습니다");
+        		 BoardMain.session = "NO";
+        		 BoardMain.userid ="";
+        	 }else {
+        		 System.out.println("========================");
+        		 System.out.println("==로그인이 필요한 기능입니다.");
+        	 }
          }
+         
         
         }//큰와일
 	}
