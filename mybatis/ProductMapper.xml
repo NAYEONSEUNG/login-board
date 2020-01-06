@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pdt">
+	<select id = "already" resultType = "Integer">
+		SELECT COUNT(*) FROM tbl_product
+		WHERE pname = #{pname}
+	</select> 
+	
+	<update id = "cntchange" parameterType = "Map"><!--동적쿼리다.  -->
+		UPDATE tbl_product SET
+		<if test ="flag == 'plus'">
+			cnt = cnt + #{cnt}
+		</if>
+		<if test ="flag == 'minus'">
+		 cnt = cnt - #{cnt}
+		</if>
+		WHERE pname = #{pname}
+	</update>
+	<insert id = "insertPdt" parameterType = "market.ProductDTO">
+	  INSERT INTO tbl_product(pno,pname,company,price,cnt)
+	  VALUES(seq_product.NEXTVAL, #{pname}, #{company},#{price},#{cnt})
+	</insert>
+	<update id = "marketUpdate" parameterType = "HashMap">
+		UPDATE tbl_product
+		SET pname = #{pname},
+			price = #{price}
+	 	WHERE pno = #{pno}	
+	</update>
+	<delete id = "marketDelete" parameterType = "String">
+	  DELETE
+	  FROM tbl_product
+	  WHERE pname = #{pname}
+	</delete>
+	<select id = "Select" resultType = "market.ProductDTO">
+		SELECT * FROM tbl_product
+	</select>
+	<select id = "marketSearch" resultType = "market.ProductDTO">
+	 	SELECT * FROM tbl_product
+	 	WHERE pname LIKE '%'||#{keyword}||'%' or company LIKE '%'||#{keyword}||'%'
+	</select>
+	<select id = "selectUsePdt" resultType = "market.ProductDTO">
+	 SELECT * FROM tbl_product
+	 WHERE cnt >= 1
+	</select>
+	
+</mapper>

@@ -7,6 +7,11 @@
 	<!--DB접속정보값을 가지고 있는 파일 설정 -->
 	<properties resource="mybatis/db.properties" /><!--시작태그(/>하면 
 		시작도 하고 끝도 하겠다 -->
+		<typeAliases>
+		 <typeAlias alias = "ProductDTO" type="market.ProductDTO"/>
+		 <typeAlias alias = "SaleDTO" type="market.SaleDTO"/>
+		 
+		</typeAliases>
 	<!-- DB. -->
 	<environments default="development">
 		<environment id="development">
@@ -23,5 +28,7 @@
 		<mapper resource="mybatis/BankMapper.xml" />
 		<mapper resource="mybatis/BoardMapper.xml" />
 		<mapper resource="mybatis/MemberMapper.xml" />
+		<mapper resource="mybatis/ProductMapper.xml" />
+		<mapper resource="mybatis/SaleMapper.xml" />
 	</mappers>
 </configuration>
