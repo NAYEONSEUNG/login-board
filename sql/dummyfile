@@ -174,3 +174,67 @@ VALUES ('c456','4567','씨','01045670000');
 COMMIT;
 
 SELECT * FROM tbl_member;
++---------------------------------------------------------------------------------------
+편의점
+DROP TABLE tbl_product;
+CREATE TABLE tbl_product(
+   pno NUMBER PRIMARY KEY,
+   pname VARCHAR2(100) NOT NULL UNIQUE,
+   company VARCHAR2(100) NOT NULL,
+   price NUMBER NOT NULL,
+   cnt NUMBER DEFAULT 0,
+   regdate DATE DEFAULT SYSDATE
+);
+
+DROP SEQUENCE seq_product;
+CREATE SEQUENCE seq_product
+    START WITH 1001
+    INCREMENT BY 1
+    NOCYCLE;
+    
+ INSERT INTO tbl_product(pno, pname, company, price, cnt)
+ VALUES(seq_product.NEXTVAL, '스프라이트','스프라이트',900,5);
+ INSERT INTO tbl_product(pno, pname, company, price, cnt)
+ VALUES(seq_product.NEXTVAL, '코카콜라','스프라이트',800,10); 
+
+commit;
+SELECT * FROM tbl_product;
+
+CREATE Table tbl_sale(
+    sno NUMBER PRIMARY KEY,
+    sname VARCHAR2(100)NOT NULL,
+    cnt NUMBER NOT NULL,
+    tprice NUMBER NOT NULL,
+    regdate DATE DEFAULT SYSDATE
+);
+COMMIT;
+
+SELECT *  FROM tbl_product
+	 WHERE cnt >= 1 ;
+DROP SEQUENCE seq_sale;
+SELECT * FROM tbl_sale;
+CREATE SEQUENCE seq_sale
+    START WITH 1
+    INCREMENT BY 1
+    NOCYCLE;
+
+
+INSERT INTO tbl_sale(sno, sname, cnt, tprice)
+		VALUES(seq_sale.NEXTVAL, 's', 5 ,900);
+
+commit;
+
+
+SELECT *
+FROM tbl_product
+WHERE cnt >= 0;
+
+--전체 총판매액
+SELECT SUM(tprice) FROM tbl_sale;
+WHERE TO_CHAR(regdate,'YYYYMMDD') = TO_CHAR(SYSDATE,'YYYYMMDD');--TO_CAHR 형변환하는 것
+
+--제품별 총판매액
+SELECT sname, SUM(tprice) 
+FROM tbl_sale
+WHERE TO_CHAR(regdate,'YYYYMMDD') = TO_CHAR(SYSDATE,'YYYYMMDD'); --이줄 포함하면 오늘 판매한 상품의 수량과 총금액
+GROUP BY sname;
