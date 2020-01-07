@@ -1,0 +1,261 @@
+--Oracle 내장함수
+--: DUAL 테이블 
+--  Oracle에서 자체적으로 제공하는 테이블
+--  간단하게 함수를 이용해서 계산 결과갑을 확인할 때 사용
+--  SYS사용자(신급권한)가 소유하는 Oracle의 표준 테이블
+--  SYS사용자가 소유하지만 어느 사용자든 접근 가능
+--  오직 한행, 한칼럼만 담고 있는 dummy테이블
+--  Dual테이블 사용 모드
+-- 1.사용자가 함수(계산)을 실행할 때 임시로 사용하는데 적합
+-- 2. 함수에 대한 쓰임을 알고 싶을 때 특정 테이블 생성없이 dual을 사용하면 return받을 수 있음
+
+--ex) 현재시간 출력
+SELECT SYSDATE FROM DUAL;
+
+--ex) 시퀀스 현재번호 출력
+SELECT seq_sale.CURRVAL FROM DUAL;
+
+--ex) 시퀀스 다음번호 출력
+SELECT seq_sale.NEXTVAL FROM DUAL;
+
+--**숫자형 함수
+--1.ABS 절대값을 반환하는 함수
+SELECET ABS(-1.234) absolute FROM DUAL;
+
+--2.CEIL 올림값을 반환하는 함수
+SELECT CEIL(10.1234) FROM DUAL;
+
+--3.FLOOR 버림값을 반환하는 함수
+SELECT FLOOR(10.1234) FROM DUAL;
+
+--4.MOD 함수를 m을 n으로 나눈 나머지 반환, n이 0일 경우 m을 반환
+SELECT MOD(9, 4) FROM DUAL;
+
+--5.ROUND n값이 반올림을 하는 함수로 m은 소숫점 아래 자릿수를 나타냄
+SELECT ROUND(192.153, 1) FROM DUAL;
+SELECT ROUND(192.153, -1) FROM DAUL;
+
+--6.TRUNC n값을 절삭하는 함수 m은 소숫점 아래 자릿수를 나타냄
+SELECT TRUNC(7.5997, 2) FROM DUAL;
+SELECT TRUNC(789.5597, -2) FROM DUAL;
+
+
+--** 문자열 함수
+--1.CONCAT 두 문자를 결합,'||' <=LIKE 절
+'%' || keyword || '%' => '%keyword%'
+  SELECT CONCAT('www.', 'oracle.') || 'com' FROM DUAL;
+  
+--2. INITCAP(char), LOWER(char), UPPER(char)
+--INITCAP: 주어진 문자열의 첫 번째 문자를 대문자로 변환
+--LOWER: 주어진 문자열을 소문자로 변환
+--UPPER: 주어진 문자열을 대문자로 변환
+SELECT INITCAP('oracle') name FROM DUAL;
+SELECT LOWER('oracle') name FROM DUAL;
+SELECT UPPER('oracle') name FROM DUAL;
+
+--3.LENGTH(char), LENGTHB(char)
+--무자열의 길이를 반환
+SELECT LENGTH('오라클자바') len FROM DUAL; --결과: 5(순수 글자수)
+SELECT LENGTHB('오라클자바') len FROM DUAL; --결과:15(글자 바이트수, 한글 1글자당 3바이트)
+
+--4. REPLACE(char1, str1, str2) 값을 치환
+--문자열의 특정 문자를 다른 문자로 변환
+SELECT REPLACE('오라클자바', '오라클', '파이썬')FROM DUAL;
+
+--5 INSTR(char1, str1, m, n) /INSTRING
+--문자열이 포함되어 있는지 조사하여 문자열의 위치를 반환, 문자열이 발견되지 않으면 0이 반환
+--char1: 지정문자, str1:검색문자, m:시작위치, n:검색순위
+SELECT INSTR('CORPORATE FLOOR', 'OK') FROM DUAL;
+SELECT INSTR('CORPORATE FLOOR', 'OR') FROM DUAL;
+SELECT INSTR('CORPORATE FLOOR', 'OR',3,2) idx FROM DUAL;
+
+--6.TRIM
+--특정한문자를제거,제거할 문자를 입력하지 않으면 기본적으로 공백이 제거 /좌우 공백제거
+SELECT TRIM('    오라크르르')  FROM DUAL;
+
+
+--집계함수
+-- 1.GROUP BY 절을 이용하여 그룹 당 하나의 결과로 그룹화 할 수 있다.
+-- 2.HAVING절을 사용하여 집계함수를 이용한 조건 비교를 할 수 있다.
+-- 3.MIN, MAX 함수는 모든 자료형에 사용할 수 있다.
+
+--1. COUNT
+--검색된 행의 수를 반환
+SELECT COUNT(deptno) FROM dept;
+
+--2.MAX: 최대값 반환
+SELECT MAX(sal) salary FROM emp;
+
+--3.MIN: 최소값 반환
+SELECT MIN(sal) salary  FROM emp;
+
+--4.SUM : 합을 반환
+SELECT SUM(sal) salary
+FROM emp
+WHERE deptno = 30;
+
+--5.STDDEV: 표준편차
+SELECT ROUND(STDDEV(sal), 3) salary
+FROM emp
+WHERE deptno = 30;
+
+--집계함수 예
+SELECT deptno 부서번호, COUNT(*) 사원수,
+       MAX(sal) 최대급여, MIN(sal)최소급여,
+       SUM(sal) 급여합계, ROUND(AVG(sal))평균급여
+    FROM emp
+    GROUP BY deptno
+    ORDER BY SUM(sal) DESC;
+    
+--SELECT의 GROUP BY절
+--1.데이터를 원하는 그룹으로 나눌 수 있음
+--2.나누고자 하는 그룹의 컬럼명을 SELECT절과 GROUP BY절 뒤에 추가하면 됨
+--3.집계함수와 함께 사용되는 상수는 GROUP BY절에 추가하지 않아도 된다. //상수:값이 변하지 않는것
+--집계함수는 SELECT, HAVING절에만 올수 있ㄷㅏ.
+
+--SELECT
+--FROM
+--WHERE
+--GROUP BY
+--HAVING
+--ORDER BY
+
+--EX)부서별 사원수 조회
+SELECT '2020년' year, deptno 부서번호, COUNT(*)사원수
+FROM emp
+GROUP BY deptno
+ORDER BY COUNT(*) DESC;
+
+--작성순서
+--SELECT -> FROM -> WHERE -> GROUP BY -> HAVING -> ORDER BY
+--실행순서
+--FROM -> WHERE -> GROUP BY -> HAVING -> SELECT -> ORDER BY
+--GROUP BY처럼 뭔가 조건을 주고 싶을때는 HAVING을 써야 된다.
+
+--ex)부서별로 그룹하여 부서번호, 인원수, 급여의 평균, 급여의 합을 조회
+
+SELECT deptno 부서번호, COUNT(*)인원수, ROUND(AVG(sal)) 급여합계
+FROM emp 
+GROUP BY deptno
+
+--SELECT에 HAVING절
+--1.WHERE절에서는 집계함수를 사용할수 없음
+--2.HAVING절은 집계함수를 가지고 조건비교를 할 때 사용
+--3.HAVING절은 GROUP BY절과 함까 사용
+
+--ex) 사원수가 다섯 명이 넘는 부서와 사원수를 조회
+SELECT d.dname, COUNT(e.empno)
+FROM emp e, dept d
+WHERE e.deptno = d.deptno
+GROUP BY dname
+HAVING COUNT(e.empno) >= 5;
+
+--실행순
+--1.FROM: emp 전체(14건), dept 전체(4건)
+--2.WHERE:emp테이블의 deptno와 dept테이블의 deptno에 값이 같으면 JOIN
+--3.GROUP BY: JOIN된 14건의 결과에서 dname 컬럼의 값으로 그룹핑(3종류: ACCOUNTING, RESEARCH, SALES)
+--4.HAVING: 그루핑 된 3건의 결과 중 사원수가 5보다 크거나 같은 2그룹(RESEARCH, SALES)
+--5.SELECT: 출력하고 싶은 컬럼 지정(사원이름, 사원수)
+--6.ORDER BY: 정렬(dname을 오름차순 정렬: 알파벳 a,b,c ...순)
+
+SELECT d.dname, COUNT(e.empno)
+FROM emp e, dept d
+WHERE e.deptno = d.deptno
+GROUP BY dname
+
+--시퀀스 값을 증가
+--실수하거나 에러가발생을 해도 값이 증가!
+
+--VIEW테이블
+-- 1.하나의 가상 테이블
+-- 2.실제 데이터가 저장되는 것은 아니지만 뷰를 통해 데이터를 관리할 수있음
+-- 3.복잡한 Query를 통해 얻을 수 있는 결과를 간단한 Query로 얻을 수 있음
+-- 4.한 개의 뷰로 여러 테이블에 대한 데이터를 검색 할 수 있음
+
+--view 설정값
+--FORCE: 기본 테이블 유무에 관계없이 VIEW를 생성
+--WITH CHECK OPTION: VIEW에 의해 엑세스될 수 있는 행만이 입력되거나 변경될 수 있음
+--WITH READ ONLY: SELECT만 가능한 VIEW생성
+
+--View 테이블 구조
+--CREATE[OR REPLACE] [FORCE|NOFORCE]VIEW view_name
+--AS subquery
+--[WITH CHECK OPTION][CONSTRAINT 제약조건]
+--[WITH READ ONLY]
+--ex) view생성
+--ex) View 생성
+CREATE OR REPLACE VIEW view_query
+AS
+    SELECT e.empno, e.ename, d.dname, d.loc
+    FROM emp e, dept d
+    WHERE e.deptno = d.deptno;
+    -- WITH READ ONLY
+    
+SELECT * FROM view_query;
+
+--인덱스
+--: 테이블내에 원하는 레코드를 빠르게 찾아갈 수 있도록 만들어진 데이터 구조
+--: 오라클에서는 B-tree를 기반으로 인덱스를 생성함
+
+--자동인덱스: PK, Unique 속성을 사용할 때 자동으로 생성되는 인덱스
+--수동인덱스: CREATE INDEX명으로 직접 만든 인덱스
+--
+
+--※인덱스를 건다고 해서 무조건 성능이 좋아지는건 아님, 역으로 나빠질수도 있음
+--데이터 건수가 적을때는 인덱스를 쓰지않는다.
+
+--인덱스를 사용하면 좋은 경우
+--1.WHERE절이나 JOIN조건 안에서 자주 사용되는 컬럼
+--2.NULL값이 많이 포함되어 있는 컬럼
+--3.WHERE절이나 JOIN조건에서 자주 사용되는 두 개이상의 컬럼들
+
+--인덱스를 사용하면 안좋은 경우
+--1.테이블이 작은경우(데이터가 작은 경우)
+--2.테이블이 자주 갱신되는 경우(값이 INSERT, UPDATE, DELETE되는 경우)
+
+--ex) UNIQUE 인덱스 생성
+CREATE UNIQUE INDEX emp_ename_indx
+ON emp(ename);
+
+--ex)인덱스 삭제
+DROP INDEX emp_ename_indx;
+
+-- Subquery(서브쿼리)중첩쿼리 // 쿼리문안에 쿼리문 또쓴다.
+--1.Subqeury는 다른 하나의 SQL문장의 절에 NEXTEDED된 SELECT문장
+--2.SELECT,UPDATE, DELETE, INSERT와 같은 DML문과 CREATE TABLE 또는 VIEW WHERE절이나 HAVING절에 사용
+--3.보통 Subquery는 Main Query이전에 한번 실행된다.
+--4.Subquery는 괄호로 묶어야 한다.
+--5.단일행 연산자(=,<,>,<=,<>,!=)와
+--  다중행 연산자(IN, NOT IN, ANY, ALL, EXISTS)들이 서브쿼리에서 사용
+--6.Subquery는 연산자의 오른쪽에 위치해야 한다.
+
+--ex)JOB이 'CLERK'인 사원의 이름과 직업을 조회
+SELECT ename, job
+FROM emp
+WHERE job = 'CLERK';
+
+--동선이 직업 몰라!
+--동선이 직업을 갖는 사람들을 조회: Main Query
+--  ㄴ 동선이 직업 조회: Sub Query
+SELECT ename, job, sal
+FROM emp
+WHERE job = (SELECT job
+             FROM emp
+             WHERE ename = '동선')
+
+--ex) 부서별로 가장 급여를 많이 받는 사원의 정보를 출력
+SELECT empno, ename, sal, deptno
+FROM emp
+WHERE sal IN (SELECT MAX(sal)  
+           FROM emp
+           GROUP BY deptno);
+           --==========>서브쿼리 실행 후
+  SELECT empno, ename, sal, deptno
+  FROM emp
+  WHERE sal IN (2850, 3000, 5000)  
+           
+
+부서별로 가장 급여를 많이받는 사람의 연봉
+SELECT MAX(sal)
+FROM emp
+GROUP BY deptno
