@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Text관련 태그</title>
+</head>
+<body>
+	<!-- h1~h6태그: 제목 표시해준다(h1이 가장 큼, h6이 가장 작음.-->
+ 	<h1>Hello 똥선</h1>
+ 	<h2>Hello 똥선</h2>
+ 	<h3>Hello 똥선</h3>
+ 	<h4>Hello 똥선</h4>
+ 	<h5>Hello 똥선</h5>
+ 	<h6>Hello 똥선</h6>
+	
+	<!-- p태그: 문단(단락) -->
+	<p> 첫번째 단락</p>
+	<p> 두번째 단락</p>
+	<p> 세번째 단락</p>
+
+<!-- br 태그: 한줄 개행 , 이놈은 end태그가 없다.-->
+	<p>
+		1.e동선<br>
+		2.똥선<br>
+		3.도비<br>
+		4.골덴<br>
+		5.오이변
+	</p>
+    <hr>
+	<!-- hr 태구: 수평선(end 태그 x) -->
+	<!-- blockquote: 인용문 넣기 -->
+	<blockquote>
+		도비는 왜 동선이를 닮았을까요<br>
+		동선이를 닮은 사람이 많아요<br>
+		아닙니다 닮은 사람이 아닙니다...요정
+	</blockquote>
+	
+	<!-- HTML은 공백과 한줄개행을 인식하지 않음! -->
+	<!-- pre: 입력하는 그대로 화면에 표시하기(공백도) -->
+	<P>   동선씨 메롱   </P>
+	<PRE>        동선씨 메롱     </PRE>
+
+	<!-- Strong, b: 글자 진하게 -->
+	<strong>동선</strong><br>
+	<b>진하게 표시할 텍스트</b>
+
+	<!-- em, i: 이탤릭체 -->
+	<em>똥선</em><br>
+	<i>똥똥선</i><br>
+
+	<!-- mark: 형광펜 효과 -->
+	<p> 동선씨 <mark> 메로로로롱롱롱롱</mark></p>
+
+	<!-- span: 줄바꿈 없이 영역 묶기 /구조짤때 많이 사용(많이들 사용한다.) -->
+	<span>오동      통선선</span>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>List(목록) 관련 태그 </title>
+</head>
+<body>
+	<!-- ol: 순서가 있는 목록 -->
+	<!-- li: 목록 낱개 1개를 만든다. -->
+	<ol>
+		<li>동선</li>
+		<li>똥선</li>
+		<li>도비</li>
+
+	</ol>
+
+	<ol type="a">
+		<li>동선
+		<li>똥선
+		<li>도비
+
+	</ol>
+
+	<!-- <li>태그들마 나열된 상태에서는 </li>End태그 생략 가능 -->
+
+	<ol type="i">
+		<li>동선</li>
+		<li>똥선</li>
+		<li>도비</li>
+	</ol>
+
+	<!-- ul: 순서가 없는 목록 -->
+	<ul>
+		<li>스타워즈</li>
+		<li>백두산</li>
+		<li>해리포터:도비</li>
+	</ul>
+
+	<!-- dl, dt, dd: 설명 목록 만들기 -->
+	<dl>
+		<dt> 영화: 스타워즈</dt>
+		<dd> 감독: j.j.에이브럼스</dd>
+		<dd> 시간: 141분</dd>
+		
+		<dt> 영화: 해리포토</dt>
+		<dd> 감독: 크리스 콜럼버스</dd>
+		<dd> 시간: 152분</dd>
+
+	</dl>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Table(표) 관련 태그</title>
+</head>
+<body>
+	<!-- table, tr, td, th(제목) -->
+
+	<table border="1px">
+		<caption>동선이와 친구들</caption>
+		<thead> <!-- 표의 제목열을 구분하는 태그-->
+		<tr>
+			<td>번호</td>
+			<td>이름</td>
+			<td>별명</td>
+		</tr>
+		</thead>
+		<tbody>   <!-- 표의 본문 구분하는 태그-->
+		<tr>
+			<td>1</td>
+			<td>동선</td>
+			<td>도비</td>
+		</tr>
+		<tr>
+			<td rowspan="2">2</td>
+			<!-- rowspan 세로로 칸 합치기 -->
+			<td colspan="2">똥선</td>  
+			<!-- colsapn 가로로 칸 합치기 -->
+		</tr>
+		<tr>
+			
+			<td>똥똥선</td>
+			<td>오이번</td>	
+		</tr>
+        </tbody>
+		<tfoot> <!--표의 요약을 구분한느 태그-->
+			<tr>
+				<td colspan="3">칭구가 2명이다</td>
+			</tr>
+			
+		</tfoot>
+	</table>
+</body>
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>image(이미지) 관련 태그</title>
+</head>
+<body>
+	<!-- image: 이미지 삽입 -->  
+	<a href="https://www.google.com">
+	 	<img src="C:/Users/504-16/Desktop/Img/2019110402156_0.jpg" alt="물이미지" width="250px" heigth = "419px"> <!--alt 경로를 못찾으면 띄어주는 것-->
+	</a>
+	<br>
+	<!-- a: 하이퍼링크 삽입 , 앵커태그    ,  _black 새로운 창을 띄워준다, 생략하면 _self가 된다..-->
+	<a href="https://www.naver.com" target="_blank">네이버</a>
+	<a href="https://www.google.com" target="_self가">구글</a>
+</body>
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- 값을 입력받는 공간ex) 회원가입, 검색 등등... -->
+	<title>Form(폼: 입력)관련태그</title>
+</head>
+<body>
+	<form method="POST" action="Login" name="frm_login">
+		<!-- 입력받는 태그들  action: 어떠한 작업을 할건지 명령하는 것, 경로를 써준다. method: 어떻게 갈건지를 적는다. -->
+		<label for="inputid">ID</label> <!-- label for을 써주면 id눌렀을때 박스안에 파란테두리 뜬다-->
+		<input type="text" name="" id ="inputid" value="ccw1104"><br>
+		<label for="inputpw">PW</label><input type="password" name="" id="inputpw"><br>
+		<input type="button" name="" value="로그인">
+	</form>
+	
+	<!-- 선택자(selector) -->
+	<!-- id:Unique 식별자 ,중복X 유일하게 하나만 식별 -->
+	<!-- class: 복수개를 선택, 중복 가능  -->
+
+	<!-- fieldsetk, legend: 폼 요소 그룹으로 묶기  테두리 쳐준다.-->
+	<form name="" action="" method=""> 
+		<fieldset>
+			<legend>회원 가입</legend>
+			<label for="memid">아이디</label>
+			<input type="text" name="" id="memid" placeholder="ID를 입력하세요!"><br><!-- placeholder: 아이디 입력창 안에 잔상을 띄어놓은다.-->
+			<label for="mempw">패스워드</label>
+			<input type="text" name="" id="mempw" placeholder="대소문자와 특수문자를 합쳐서 8자이상"><br>
+			<label for="memphone">전화번호(-없이)</label>
+			<input type="text" name="" id="memphone" value="010" maxlength="11">
+		</fieldset>	
+	</form>
+</body>
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>input(입력) 관련 태그</title>
+</head>
+<body>
+	<form name="" action="" method="">
+		<input type="text" name="" placeholder="text" value="약오르지" readonly="readonly" = ><br> 
+		<input type="password" name="" placeholder="password"><br> 
+		<input type="hidden" name="" placeholder="hidden"><br>
+		<input type="search" name="" placeholder="search"><br>
+		<input type="url" name="" placeholder="url"><br>
+		<input type="email" name="" placeholder="email"><br>
+		<input type="tel" name="" placeholder="tel"><br>
+		<input type="number" name="" placeholder="number"><br>
+		<input type="range" name="" placeholder="range"><br>
+
+		<hr>
+		<input type="file" name=""><hr>
+		<label><input type="radio" name="subject">JAVA</label>
+		<label><input type="radio" name="subject">Python</label>
+		<label><input type="radio" name="subject">Oracle</label><br>
+
+		<label><input type="checkbox" name="subject">복숭아</label>
+		<label><input type="checkbox" name="subject">포도</label>
+		<label><input type="checkbox" name="subject">수박</label><br>
+		<hr>
+
+		<input type="button" name="" value="제출">
+		<input type="submit" name="">
+		<input type="reset" name="">
+	</form>
+</body>
+</html>
