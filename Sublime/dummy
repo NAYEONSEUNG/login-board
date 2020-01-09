@@ -234,3 +234,217 @@
 	</form>
 </body>
 </html>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>extend.html: 스타일 상속</title>
+	<style type="text/css">
+		#ho{
+			color: red;
+			font-size: 45px;
+		}
+
+	</style>
+</head>
+<body>
+	<div id="ho">
+		호호호
+		<span>체리링</span> <!-- 스판이 div안으로 들어와서 자식이 됨 (상속)-->
+	</div>
+	
+</body>
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>font.html</title>
+	<!-- 웹폰트 사용하는 방법 -->
+	<style type="text/css">
+		@import url('https://fonts.googleapis.com/css?family=Poor+Story&display=swap');
+		#human{
+			font-size: 45px; /*글자 크기*/
+			font-family: 'Poor Story', cursive;/*글씨체*/
+			font-weight: bold; 
+			/* font-wieght는 글자의 굵기를 지정 숫자는 100-900까지 표현가능 Normal(400),Bold(700)*/
+			font-style: italic;/*이탤릭체*/
+		}
+	</style>
+</head>
+<body>
+	<span id = "human">동선씨동동동동/(O.,.,.,00.,.,.,.O)/</span>
+</body>
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>text.html</title>
+	<style type="text/css">
+		#hollywood{
+
+			color: white; /*글자색*/
+			background-color: black;/*배경색*/
+			/* text-decoration
+				- underline: 밑줄
+				- none: 아무것도 안함
+				- line-through: 취소선
+				- overline: 윗줄;  */
+			text-decoration: underline;/*밑줄*/
+
+			/* text-transform
+				-capitalize: 첫글자 대문자 변환
+				-uppercase: 대문자
+				-lowercase 소문자
+				-full-width: 전각문자
+				-none: 아무것도 안함*/
+				
+			text-transform: uppercase;
+		
+		}
+		#movie{
+			color: navy;
+			font-size: 100px;
+			/* text-shadow: 텍스트 그림자 효과;
+			(가로거리, 세로거리, 번짐정도, 색상)
+			*/
+			text-shadow: 5px 5px 3px orangered, 10px 10px 6px mediumseagreen;
+
+			letter-spacing: 0.2em; /*자간*/ 
+		}
+		#actor{
+			width: 500px;
+			border: 1px solid black;
+			font-size: 45px;
+			/* text-align: 정렬
+				start: 현재 텍스트 줄의 시작 위치
+				end: 현재 텍스트 줄의 끝 위치
+				left: 왼쪽 정렬
+				center: 가운데 정렬
+				justify: 양쪽에 맞추어*/
+			text-align: center;
+
+			line-height: 2;/*줄간격(px, 2(글자크기 2배)*/
+		}
+		#aaa{
+			font-size: 45px;
+			width:500px;
+			height: 300px;
+			border:3px dashed skyblue;
+			margin: 10px;
+			text-align: center;
+			line-height: 300px; /*heigt랑 딱 맞게 써주면 한가운데로 온다. 글자가 움직이는게 아니라 박스가 움직인다고 보자*/
+		}
+
+	</style>
+</head>
+<body>
+	<span id="hollywood">Do yo like hollywood?</span><br>
+	<span id="movie">JAVA Programing</span>
+
+	<div id="actor">I Love Python I Love Python I Love Python I Love Python I Love PythonI Love Python I Love Python I Love Python I Love Python</div>
+
+	<div id="aaa">Oracle DBMS</div> 
+</body>
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>list-style-type(ul,ol함꼐 사용)</title>
+	<style type="text/css">
+		ul{
+			/* ul, ol태그 앞의 기호를 제거할때 사용*/
+			list-style-type: none;
+
+		}
+	</style>
+</head>
+<body>
+	<ul>
+		<li>체리</li>
+		<li>체리</li>
+		<li>토미</li>
+	</ul>
+</body>
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>color</title>
+	<style type="text/css">
+		.span1{
+			color:#3c6382;/*16진수(0~9+a,b,c,d,e,f)RGB(앞에 0 두개가 red, 가운데0두개가 green, 마지막 0두개가 blue)값*/
+			font-size: 40px;
+		}
+		.span2{
+			font-size: 40px;
+			/* rgba의 a는 투명도
+				투명도 0~1, 1은 온전하게 출력, 0은 안나오는거*/
+			color: rgba(0,0,0,0.5); 
+
+			opacity: 0.5; /* 투명도만 나타낸다(0~1)*/
+			
+		}
+	</style>
+</head>
+<body>
+	<span class="span1">동선씨 메롱</span>
+	<span class="span2">동선씨 메롱메롱</span>
+</body>
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>background</title>
+	<style type="text/css">
+		.div1{
+			border:1px solid blue;
+			width:800px;
+			height: 800px;
+			background-image: url(C:/Users/504-16/Desktop/Img/14806406278378.jpg);
+			/* repeat: 바둑판식 배열(Default)
+				repeat-x: 가로로만 바둑판식 배열
+				repeat-y: 세로로만 바둑판식 배열
+				no-repeat: 바둑판식 배열 X*/
+			background-repeat: no-repeat;/* 배경바둑판식 배열 X*/
+			
+			/* auto: 기본 배경상즈 그대로 사용
+			 	contain: 태그안에 배경 이미지가 다 들어오도록 확대 또는 축소
+			 	cover: 배경이미지로 요소를 모두 덮도록 이미지를 확대 축소
+			 	200px, 150px : 가로세로 사이즈를 지정
+			 	50%, 50%: 태그의 길이의 몇%로 지정*/
+			background-size: 50%, 50%;
+
+			/*수평위치: left, center, right
+				수직위치: top, center, bottom
+				background-position:수평위치, 수직위치;*/
+			background-position: right, center;
+		}
+	</style>
+</head>
+<body>
+	<div class="div1"></div>
+</body>
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>gradation.html</title>
+	<style type="text/css">
+		.div1{
+			width: 1000px;
+			height:1000px;
+			/*방향
+				1. to top  아래에서 위로
+				2. to left
+				3. to right
+				4. to bottom
+
+				각도
+				360도 => 45deg = 45도*/
+			background: linear-gradient(-246.07938369483423deg, rgba(209, 135, 38,1) 14.476562500000007%,rgba(132, 172, 117,1) 48.70703124999999%,rgba(125, 176, 125,1) 51.76627604166666%);	
+		}
+	</style>
+</head>
+<body>
+	<div class="div1"></div>
+</body>
+</html>
