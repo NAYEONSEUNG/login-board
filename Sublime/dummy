@@ -730,3 +730,45 @@
 	</div>	
 </body>
 </html>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>active.html(상태선택자)</title>
+	<style type="text/css">
+		/* 상태선택자
+		   선택자: link = 방문하지 않은 링크에 스타일 적용
+		   선택자: visited = 방문한 링크에 스타일 적용
+		   선택자: hover= 마우스 커서 올려놓았을때 스타일 적용
+		   선택자: active = 웹 요소를 활성화했을 때 스타일 적용
+		   선택자: focus = 웹 요소에 초점이 맞추어졌을 때 스타일 적용*/
+		   ul{list-style-type: none; /**/
+			  font-size: 25px;
+		   }
+		   a:link, a:visited{ /* 방문했건 안했거 밑줄을 지워버려라*/
+		   	padding: 10px;
+		   	text-decoration: none; 
+		   }
+		   a:hover, a:focus{
+		   	background-color: orangered;
+		   	color: white;
+
+		   }
+		   a:active{
+		   	background-color: mediumseagreen;/*클릭했을때 효과주는 것*/
+		   	color: white;
+		   }
+	</style>
+</head>
+<body>
+	<div class="navi">
+		<ul>
+		<li><a href="#">이용안내</a></li>
+		<li><a href="#">객실소개</a></li>
+		<li><a href="#">예약방법 및 요금</a></li>
+		<li><a href="#">예약하기</a></li>
+		</ul>
+		
+	</div>
+
+</body>
+</html>
