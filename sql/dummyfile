@@ -238,3 +238,24 @@ SELECT sname, SUM(tprice)
 FROM tbl_sale
 WHERE TO_CHAR(regdate,'YYYYMMDD') = TO_CHAR(SYSDATE,'YYYYMMDD'); --이줄 포함하면 오늘 판매한 상품의 수량과 총금액
 GROUP BY sname;
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+--다음 영화 평점을담기위한 테이블 생성----------------20200226----------------------------------------------------------------------------------------
+DROP TABLE tbl_movie;
+CREATE TABLE tbl_movie(
+    mno NUMBER PRIMARY KEY,
+    title VARCHAR2(500) NOT NULL,
+    content VARCHAR2(2000),
+    writer VARCHAR2(200) NOT NULL,
+    score NUMBER DEFAULT 0,
+    loc VARCHAR2(100),    
+    regdate NUMBER
+);
+
+DROP SEQUENCE seq_movie;
+CREATE SEQUENCE seq_movie
+        START WITH 1
+        INCREMENT BY 1
+        NOCYCLE;
+            
+ select * from tbl_movie;
