@@ -259,3 +259,55 @@ CREATE SEQUENCE seq_movie
         NOCYCLE;
             
  select * from tbl_movie;
+ 
+ 
+ ----------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------20200217-----------------------------------------------------------------
+
+--상품 테이블
+DROP TABLE tbl_pdt;
+CREATE TABLE tbl_pdt(
+     pno NUMBER PRIMARY KEY,
+     pname VARCHAR2(500) NOT NULL,
+     ptype VARCHAR2(200) NOT NULL,
+     pmemo VARCHAR2(1000),
+     price NUMBER DEFAULT 0,   
+     avail_cnt NUMBER DEFAULT 0,
+     sale_cnt NUMBER DEFAULT 0,
+     p_img VARCHAR2(300),
+     regdate DATE DEFAULT SYSDATE
+);
+
+DROP SEQUENCE seq_pdt;
+CREATE SEQUENCE seq_pdt
+    START WITH 1
+    INCREMENT BY 1
+    NOCYCLE;
+
+INSERT INTO tbl_pdt(pno, pname, ptype, pmemo, price, avail_cnt, sale_cnt, p_img)
+VALUES(seq_pdt.NEXTVAL, '차가버섯 추출분말', '차가버섯','200만병 판매 돌파! 국민차가버섯', '25000',7 , 10, 'chaga22chaga.jpg');
+INSERT INTO tbl_pdt(pno, pname, ptype, pmemo, price, avail_cnt, sale_cnt, p_img)
+VALUES(seq_pdt.NEXTVAL, 'G.어린이 베타카로틴', '영양제','우리아이 눈건강,면역을 위한 베타카로틴!', '20000',6 , 30, 'rere.3f4b063e8e226dc9006b9d8eb82e761b.jpg');
+INSERT INTO tbl_pdt(pno, pname, ptype, pmemo, price, avail_cnt, sale_cnt, p_img)
+VALUES(seq_pdt.NEXTVAL, '데일리 히알루론산', '새우','바나나과자', '15000',11 , 50, 'dailyguronsan.png');
+INSERT INTO tbl_pdt(pno, pname, ptype, pmemo, price, avail_cnt, sale_cnt, p_img)
+VALUES(seq_pdt.NEXTVAL, '피쉬 콜라겐', '콜라겐','	흡수율 높은 저분자 피쉬콜라겐', '11000',52 , 100, 'rere.3a30dc48d4c1d51722aabd7666a5c31b.jpg');
+INSERT INTO tbl_pdt(pno, pname, ptype, pmemo, price, avail_cnt, sale_cnt, p_img)
+VALUES(seq_pdt.NEXTVAL, '파이토 멀티비타민', '비타민','화학적부형제 제로! 남성을 위한 맞춤 설계 종합비타민', '40000',23 , 120, 'rere.multivitamin.jpg');
+INSERT INTO tbl_pdt(pno, pname, ptype, pmemo, price, avail_cnt, sale_cnt, p_img)
+VALUES(seq_pdt.NEXTVAL, '파이토 효모 비타민D ', '비타민','화학적부형제 제로! 현대인에게 부족한 비타민D 2,000IU섭취', '50000',41 , 150, 'rere.hymovita.jpg');
+INSERT INTO tbl_pdt(pno, pname, ptype, pmemo, price, avail_cnt, sale_cnt, p_img)
+VALUES(seq_pdt.NEXTVAL, '파이토 칼맥', '비타민','해조칼슘,산호칼슘과 마그네슘을 한번에', '30000',65 , 170, 'rere.paito.jpg');
+INSERT INTO tbl_pdt(pno, pname, ptype, pmemo, price, avail_cnt, sale_cnt, p_img)
+VALUES(seq_pdt.NEXTVAL, '뷰티羊양태반', '피부','양태반+콜라겐+천연보습인자로 피부 속 깊이 촉촉하게', '90000',66 , 1000, 'rere.beautytaeban.jpg');
+INSERT INTO tbl_pdt(pno, pname, ptype, pmemo, price, avail_cnt, sale_cnt, p_img)
+VALUES(seq_pdt.NEXTVAL, '화이트포뮬라', '피부','유해산소로부터 세포를 보호!!', '32000',71 , 192 ,'rere.whiteformul.jpg');
+INSERT INTO tbl_pdt(pno, pname, ptype, pmemo, price, avail_cnt, sale_cnt, p_img)
+VALUES(seq_pdt.NEXTVAL, '참좋은 유산균', '장','장이튼튼튼!!', '22000',37 , 134, 'rere.goodusangyun.jpg');
+INSERT INTO tbl_pdt(pno, pname, ptype, pmemo, price, avail_cnt, sale_cnt, p_img)
+VALUES(seq_pdt.NEXTVAL, '연골 앤 관절케어', '관절','지친관절솔루션!관절해답연골앤관절케어!MSM', '35000',23 , 410, 'rere.yungol.jpg');
+INSERT INTO tbl_pdt(pno, pname, ptype, pmemo, price, avail_cnt, sale_cnt, p_img)
+VALUES(seq_pdt.NEXTVAL, '체지방 더블컷 다이어트 라인', '다이어트','더블컷 가르시니아, 체지방컷,탄수화물컷', '12000',75 , 710, 'rere.fatcut.jpg');
+commit;
+SELECT * FROM tbl_pdt;
+
